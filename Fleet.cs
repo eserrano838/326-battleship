@@ -28,9 +28,30 @@ namespace BattleShip
             Ships[4].YLocations = new int[2];
         }
 
-        public void setShipLocation(int ship, int i, int x, int y) {
+        public void setShipLocation(int ship, int i, int x, int y, Board board)
+        {
             Ships[ship].setXLocations(i, x);
             Ships[ship].setYLocations(i, y);
+            if (Ships[ship].Name == "Carrier")
+            {
+                board.updateBoard(x, y, 'c');
+            }
+            else if (Ships[ship].Name == "Battleship")
+            {
+                board.updateBoard(x, y, 'b');
+            }
+            else if (Ships[ship].Name == "Cruiser")
+            {
+                board.updateBoard(x, y, 'r');
+            }
+            else if (Ships[ship].Name == "Submarine")
+            {
+                board.updateBoard(x, y, 's');
+            }
+            else
+            {
+                board.updateBoard(x, y, 'd');
+            }
         }
     }
 }

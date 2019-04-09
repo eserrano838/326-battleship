@@ -8,7 +8,8 @@ namespace BattleShip
         public int[] XLocations;
         public int[] YLocations;
         public Boolean HasSunk { get; set; }
-
+        public int hitCount = 0;
+ 
         public Ship(string name, int size)
         {
             Name = name;

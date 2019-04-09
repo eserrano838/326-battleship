@@ -10,21 +10,27 @@ namespace BattleShip
             string player1name;
             string player2name;
             int playerTurn = 1;
+            Console.WriteLine(" ============================================");
+            Console.WriteLine(" ===========Welcome to BattleShip!===========");
+            Console.WriteLine(" ============================================\n");
 
-            Console.WriteLine("Welcome to BattleShip!");
-
-            Console.Write("Please enter Player 1's name: ");
+            Console.Write(" Enter Player 1's name: ");
             player1name = Console.ReadLine();
 
-            Console.Write("Please enter Player 2's name: ");
+            Console.Write(" Enter Player 2's name: ");
             player2name = Console.ReadLine();
 
             Player player1 = new Player(player1name);
             Player player2 = new Player(player2name);
+            Console.WriteLine();
 
-            player1.setFleetLocations();
-            player1.board.displayShipBoard();
-           
+            player1.setFleetLocations1();
+            player2.setFleetLocations2();
+
+            player1.guessBoard.displayGuessBoard();
+            player1.shipBoard.displayShipBoard();
+            player2.guessBoard.displayGuessBoard();
+            player2.shipBoard.displayShipBoard();
 
             // (goal: get ship positions from player) for now manually placeships
 

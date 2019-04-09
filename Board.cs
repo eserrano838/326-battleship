@@ -10,7 +10,11 @@ namespace BattleShip
             // 'e' = empty
             // 'h' = hit
             // 'm' = miss
-            // 's' = ship
+            // 'd' = destroyer
+            // 'b' = battleship
+            // 's' = submarine
+            // 'c' = carrier
+            // 'r' = cruiser
 
             // initialize board to all 'e'
             for (int i = 0; i < 10; i++)
@@ -29,9 +33,16 @@ namespace BattleShip
 
         // board of a player's hits and misses (guesses) on other player's ships
         public void displayGuessBoard() {
-            Console.WriteLine(" A B C D E F G H I J");
+            Console.WriteLine("\t     A B C D E F G H I J");
+            Console.WriteLine("\t    ---------------------");
             for (int i = 0; i < 10; i++) {
-                Console.Write(i + 1);
+                Console.Write("\t");
+                if (i != 9)
+                {
+                    Console.Write(" ");
+                }
+                Console.Write((i + 1) + " |");
+
                 for (int j = 0; j < 10; j++)
                 {
                     if (board[i,j] == 'h') {
@@ -41,26 +52,32 @@ namespace BattleShip
                         Console.Write(" O");
                     }
                     else {
-                        Console.Write("  ");
+                        Console.Write(" ~");
                     }
                 }
-                Console.Write("\n");
+                Console.Write(" |\n");
             }
-            
+            Console.WriteLine("\t    ---------------------");
         }
 
         // board of player's ship placement and other player's hits and misses (gueses)
         public void displayShipBoard()
         {
-            Console.WriteLine(" A B C D E F G H I J");
+            Console.WriteLine("\t     A B C D E F G H I J");
+            Console.WriteLine("\t    ---------------------");
             for (int i = 0; i < 10; i++)
             {
-                Console.Write(i + 1);
+                Console.Write("\t");
+                if (i != 9) {
+                    Console.Write(" ");
+                }
+                Console.Write((i + 1) + " |");
+
                 for (int j = 0; j < 10; j++)
                 {
                     if (board[i, j] == 'e')
                     {
-                        Console.Write("  ");
+                        Console.Write(" ~");
                     }
                     else if (board[i, j] == 'h')
                     {
@@ -70,13 +87,30 @@ namespace BattleShip
                     {
                         Console.Write(" O");
                     }
+                    else if (board[i, j] == 'c')
+                    {
+                        Console.Write(" C");
+                    }
                     else if (board[i, j] == 's')
                     {
                         Console.Write(" S");
                     }
+                    else if (board[i, j] == 'd')
+                    {
+                        Console.Write(" D");
+                    }
+                    else if (board[i, j] == 'b')
+                    {
+                        Console.Write(" B");
+                    }
+                    else if (board[i, j] == 'r')
+                    {
+                        Console.Write(" R");
+                    }
                 }
-                Console.Write("\n");
+                Console.Write(" |\n");
             }
+            Console.WriteLine("\t    ---------------------");
         }
     }
 }
