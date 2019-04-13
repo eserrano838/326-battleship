@@ -6,7 +6,6 @@ namespace BattleShip
     {
         public static void Main(String[] args)
         {
-            Boolean isFinished = true;
             string player1name;
             string player2name;
             int playerTurn = 1;
@@ -27,41 +26,82 @@ namespace BattleShip
             player1.setFleetLocations1();
             player2.setFleetLocations2();
 
-            player1.guessBoard.displayGuessBoard();
-            player1.shipBoard.displayShipBoard();
-            player2.guessBoard.displayGuessBoard();
-            player2.shipBoard.displayShipBoard();
-
             // (goal: get ship positions from player) for now manually placeships
 
-            /*
-            while (!isFinished) {
+            while (!hasFinished(player1, player2)) {
                 if (playerTurn == 1)
                 {
                     // display player 1's board
+                    player1.guessBoard.displayGuessBoard();
+                    player1.shipBoard.displayShipBoard();
                     // ask player 1 for a guess
-                    // check if valid guess
-                    // check if hit
-                    //      if hit 
-                    //      check if ship sunk
-                    // check if player won game
-                    // update board
-                    // switch player player turn
+                    Console.Write(player1.Name + " , please enter your guess (eg A5): ");
+                    string guess = Console.ReadLine();
+
+                    // check if valid guess (board spot is "empty" or ship)
+                    while (!player1.guessBoard.isValidGuess(guess))
+                    {
+                        Console.WriteLine(guess + " is not a valid guess");
+                        Console.Write(player1.Name + " , please enter your guess (eg A5): ");
+                        guess = Console.ReadLine();
+                    }
+
+                    // check if hit (ship spot)
+                    if (player1.guessBoard.isHit(guess))
+                    {
+                        int ship = player1.guessBoard.getShip(guess);
+                        player1.fleet.updateHitCount(ship);
+
+                        if (player1.fleet.isShipSunk(ship))
+                        {
+                            Console.WriteLine("SHIP SUNK");
+                        }
+                        else
+                        {
+                            Console.WriteLine("SHIP HIT");
+                        }
+
+                        player1.guessBoard.updateBoard(guess, 'h');
+                        player2.shipBoard.updateBoard(guess, 'h');
+                    }
+                    else
+                    {
+                        player1.guessBoard.updateBoard(guess, 'm');
+                        player2.shipBoard.updateBoard(guess, 'm');
+                    }
+                    playerTurn = 2;
                 }
                 else
                 {
                     // display player 2's board
+                    player2.guessBoard.displayGuessBoard();
+                    player2.shipBoard.displayShipBoard();
                     // ask player 2 for a guess
+                    Console.Write(player2.Name + " , please enter your guess (eg A5): ");
+                    string guess = Console.ReadLine();
+
                     // check if valid guess
+                    if (player2.guessBoard.isValidGuess(guess))
+                    {
+
+                    }
                     // check if hit
                     //      if hit 
                     //      check if ship sunk
                     // check if player won game
                     // update board
-                    // switch player player turn
+
                 }
             }
-            */
+            if (player1.fleet.allSunk()) {
+                Console.WriteLine(player1name + "won!!!");
+            } else {
+                Console.WriteLine(player2name + "won!!!");
+            }
+        }
+
+        public static Boolean hasFinished(Player p1, Player p2) {
+            return (!p1.fleet.allSunk() || !p2.fleet.allSunk());
         }
     }
 }

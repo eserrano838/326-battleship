@@ -27,9 +27,31 @@ namespace BattleShip
         }
 
         // updates point on board
-        public void updateBoard(int XLocation, int YLocation, char status) {
+        public void updateBoard(string guess, char status) {
+            // parse guess
             board[YLocation, XLocation] = status;
         }
+
+        public Boolean isValidGuess(string guess) {
+            // parse guess  
+            // valid guess is either 'e' or ship (not miss or hit)
+            return true;
+        }
+
+        public Boolean isHit(string guess) {
+            // parse guess
+            // return true if board spot is a ship
+
+        }
+
+        public int getShip(string guess) {
+            // parse guess
+            // return correct ship number/index
+        }
+
+        // parse X
+
+        // parse Y
 
         // board of a player's hits and misses (guesses) on other player's ships
         public void displayGuessBoard() {

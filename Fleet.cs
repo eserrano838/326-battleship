@@ -53,5 +53,24 @@ namespace BattleShip
                 board.updateBoard(x, y, 'd');
             }
         }
+
+        // returns true if all ships in fleet have been sunk
+        public Boolean allSunk() {
+            for (int i = 0; i < 5; i ++) {
+                if (!Ships[i].hasSunk()) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public Boolean isShipSunk(int ship) {
+            return Ships[ship].hasSunk();
+        }
+
+        // increments a ships hit count
+        public void updateHitCount(int ship) {
+            Ships[ship].hitCount++;
+        }
     }
 }
