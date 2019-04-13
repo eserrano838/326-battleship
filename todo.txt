@@ -1,0 +1,43 @@
+Program
+  #continues game through while loop
+  #checks if player has won
+
+
+player
+
+
+Board
+  isValidGuess()
+    #checks if guess is in boards
+    #checks if guess has already been called
+
+  isHit()
+    array of ships with corresponding number
+    return Bool
+
+  getShip()
+    return int
+
+  updateBoard()
+    #parses input(guess)
+    #updates boards
+
+  parseFunction(String)
+    #parsesGuess
+    #return x location and ylocation
+    #either split or getlocations methods
+
+  getxlocation
+    #connected to parsefunction
+
+  getylocation
+    #connected to parsefunction
+
+fleet
+  updateHitCount(int ship)
+    #updates hitcount in ship
+    -done at the moment
+
+
+ship
+  -removed hasSunk variable but has function
