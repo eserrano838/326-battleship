@@ -27,31 +27,92 @@ namespace BattleShip
         }
 
         // updates point on board
-        public void updateBoard(string guess, char status) {
-            // parse guess
+        public void updateBoard(int XLocation, int YLocation, char status) {
             board[YLocation, XLocation] = status;
         }
 
-        public Boolean isValidGuess(string guess) {
-            // parse guess  
-            // valid guess is either 'e' or ship (not miss or hit)
-            return true;
+        public Boolean isValidGuess(int xLocation, int yLocation) {
+            // valid guess is either 'e' or ship (not 'm' or 'h')
+            if (board[xLocation, yLocation] == 'h')
+            {
+                return false;
+            }else if (board[xLocation, yLocation] == 'm')
+            {
+                return false;
+            }else
+            {
+                return true;
+            }            
         }
 
-        public Boolean isHit(string guess) {
-            // parse guess
-            // return true if board spot is a ship
+        public Boolean isHit(int xLocation, int yLocation) {
+            // return true if board spot is a ship (so not 'e','h','m')
+            if (board[xLocation, yLocation] == 'e')
+            {
+                return false;
+            }
+            else if(board[xLocation, yLocation] == 'h')
+            {
+                return false;
+            }else if (board[xLocation, yLocation] == 'm')
+            {
+                return false;
+            }else
+            {
+                return true;
+            }
 
         }
 
-        public int getShip(string guess) {
+        public int getShip(int xLocation, int yLocation) {
             // parse guess
             // return correct ship number/index
+
         }
 
-        // parse X
+        public int ParseX(char xGuess)
+        {
+            return xGuess - '0';
+        }
 
         // parse Y
+        public int ParseY(char yGuess)
+        {
+            if (yGuess == 'A'){
+                return 0;
+            }
+            else if (yGuess == 'B'){
+                return 1;
+            }
+            else if (yGuess == 'C'){
+                return 2;
+            }
+            else if (yGuess == 'D'){
+                return 3;
+            }
+            else if (yGuess == 'E'){
+                return 4;
+            }
+            else if (yGuess == 'F'){
+                return 5;
+            }
+            else if (yGuess == 'G'){
+                return 6;
+            }
+            else if (yGuess == 'H')
+            {
+                return 7;
+            }
+            else if (yGuess == 'I')
+            {
+                return 8;
+            }
+            else
+            {
+                return 9;
+            }
+
+        }
 
         // board of a player's hits and misses (guesses) on other player's ships
         public void displayGuessBoard() {

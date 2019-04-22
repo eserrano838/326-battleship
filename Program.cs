@@ -37,19 +37,22 @@ namespace BattleShip
                     // ask player 1 for a guess
                     Console.Write(player1.Name + " , please enter your guess (eg A5): ");
                     string guess = Console.ReadLine();
+                    int xGuess = player1.guessBoard.ParseX(guess[0]);
+                    int yGuess = player1.guessBoard.ParseY(guess[1]);
 
                     // check if valid guess (board spot is "empty" or ship)
-                    while (!player1.guessBoard.isValidGuess(guess))
+                    while (!player1.guessBoard.isValidGuess(xGuess, yGuess))
                     {
                         Console.WriteLine(guess + " is not a valid guess");
                         Console.Write(player1.Name + " , please enter your guess (eg A5): ");
                         guess = Console.ReadLine();
                     }
 
+
                     // check if hit (ship spot)
-                    if (player1.guessBoard.isHit(guess))
+                    if (player1.guessBoard.isHit(xGuess, yGuess))
                     {
-                        int ship = player1.guessBoard.getShip(guess);
+                        int ship = player1.guessBoard.getShip(xGuess, yGuess);
                         player1.fleet.updateHitCount(ship);
 
                         if (player1.fleet.isShipSunk(ship))
@@ -61,13 +64,13 @@ namespace BattleShip
                             Console.WriteLine("SHIP HIT");
                         }
 
-                        player1.guessBoard.updateBoard(guess, 'h');
-                        player2.shipBoard.updateBoard(guess, 'h');
+                        player1.guessBoard.updateBoard(xGuess, yGuess, 'h');
+                        player2.shipBoard.updateBoard(xGuess, yGuess, 'h');
                     }
                     else
                     {
-                        player1.guessBoard.updateBoard(guess, 'm');
-                        player2.shipBoard.updateBoard(guess, 'm');
+                        player1.guessBoard.updateBoard(xGuess, yGuess, 'm');
+                        player2.shipBoard.updateBoard(xGuess, yGuess, 'm');
                     }
                     playerTurn = 2;
                 }
@@ -79,9 +82,11 @@ namespace BattleShip
                     // ask player 2 for a guess
                     Console.Write(player2.Name + " , please enter your guess (eg A5): ");
                     string guess = Console.ReadLine();
+                    int xGuess = player2.guessBoard.ParseX(guess[0]);
+                    int yGuess = player2.guessBoard.ParseY(guess[1]);
 
                     // check if valid guess
-                    if (player2.guessBoard.isValidGuess(guess))
+                    if (player2.guessBoard.isValidGuess(xGuess, yGuess))
                     {
 
                     }
@@ -94,9 +99,9 @@ namespace BattleShip
                 }
             }
             if (player1.fleet.allSunk()) {
-                Console.WriteLine(player1name + "won!!!");
+                Console.WriteLine(player1name + " won!!!");
             } else {
-                Console.WriteLine(player2name + "won!!!");
+                Console.WriteLine(player2name + " won!!!");
             }
         }
 
