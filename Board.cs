@@ -67,8 +67,19 @@ namespace BattleShip
         public int getShip(int xLocation, int yLocation) {
             // parse guess
             // return correct ship number/index
+                int x = xLocation;
+                int y = yLocation;
+
+                if ((board[x, y] == 'd')) { return 4; }
+                else if ((board[x, y] == 's')) { return 3; }
+                else if ((board[x, y] == 'r')) { return 2; }
+                else if ((board[x, y] == 'b')) { return 1; }
+                else if ((board[x, y] == 'c')) { return 0; }
+                else { return 5; }
 
         }
+
+
 
         public int ParseX(char xGuess)
         {
