@@ -5,28 +5,24 @@ namespace BattleShip
     {
         public int Size { get; set; }
         public string Name { get; set; }
-        public int[] XLocations;
-        public int[] YLocations;
-        public int hitCount = 0;
- 
-        public Ship(string name, int size)
-        {
-            Name = name;
-            Size = size;
-        }
+        public int[] XCoords { get; set; }
+        public int[] YCoords { get; set; }
+        public int HitCount { get; set; } = 0;
 
+        // sets ships x location at index i
         public void setXLocations(int i, int x) {
-            XLocations[i] = x;
+            XCoords[i] = x;
         }
 
+        // sets ships y location at index i
         public void setYLocations(int i, int y)
         {
-            YLocations[i] = y;
+            YCoords[i] = y;
         }
 
-        // returns true 
+        // returns true if a ship has sunk
         public Boolean hasSunk() {
-            return (hitCount == Size);
+            return (HitCount == Size);
         }
     }
 }
